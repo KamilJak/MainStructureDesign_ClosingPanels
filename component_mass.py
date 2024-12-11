@@ -27,3 +27,4 @@ components: dict[str, Component] = {
     'PCDS': Component(4.14, 1),
     'cables': Component(0.9, 1),
 }
+
