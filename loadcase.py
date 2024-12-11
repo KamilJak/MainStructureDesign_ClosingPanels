@@ -8,8 +8,15 @@ class LoadCase:
         self.moment_y = m_y/2  # torque around solar panel length axis
         self.force_z = f_z/2  # vertical force, aligned with thrust direction
         self.moment_z = m_z/2  # moment around thrust vector axis
-#        self.yz_resultant = "N/A"  # not assigned yet
         self.y_resultant = "guh"
+
+    def __str__(self) -> str:
+        representation = ""
+        representation += "\nF_x: " + str(self.force_x)
+        representation += "\nF_y: " + str(self.y_resultant)
+        representation += "\nF_z: " + str(self.force_z)
+        representation += "\n"
+        return representation
 
     def yz_plane_load(self, vert_spacing: float) -> float:
         moment_induced_y_load = self.moment_x/vert_spacing
@@ -29,6 +36,9 @@ class LoadCase:
     @y_resultant.setter
     def y_resultant(self, value):
         self._y_resultant = value
+
+    def resultant(self):
+        return m.sqrt(self.force_x**2 + self.y_resultant**2 + self.force_z**2)
 
 def loadcase_calc(angle: float, time: float, panel_mass: float) -> LoadCase:
     angle = m.radians(angle)
@@ -60,7 +70,6 @@ def loadcase_calc(angle: float, time: float, panel_mass: float) -> LoadCase:
     m_z_m = f_x_m * (panel_length/2) + alpha * Izz
     f_y_m = panel_mass * panel_cg_radius * alpha**2
     m_y_m = 0
-    print("m_z", m_z)
 
     f_z = max(f_z, f_z_m)
     m_x = max(m_x, m_x_m)
@@ -70,4 +79,5 @@ def loadcase_calc(angle: float, time: float, panel_mass: float) -> LoadCase:
     m_y = max(m_y, m_y_m)
 
     return LoadCase(f_x, m_x, f_y, m_y, f_z, m_z)
+
 
