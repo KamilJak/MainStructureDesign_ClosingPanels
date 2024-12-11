@@ -18,7 +18,7 @@ components: dict[str, Component] = {
     'magnetometer electronics': Component(1.2, 1),
     'a-BELA': Component(13, 1),
     'main thruster': Component(1.9, 1),
-    'propellant': Component(1290.688, 1),
+    'propellant': Component(1207, 1),
     'propellant tank': Component(52.5, 1),
     'radiator': Component(2.53, 1),
     'louver': Component(1, 1),
