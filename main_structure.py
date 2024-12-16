@@ -33,4 +33,7 @@ def minimise_k(r, t, l, v) -> float:
 def get_k(r, t, l, v, lam) -> float:
     return (lam + (12 * (l**4) * (1-v**2)) / (m.pi**4 * r**2 * t**2 * lam))
 
+def maximum_load(radius, thickness, length, pressure, material: MaterialProperties) -> float:
+    return max(column_buckling_load(radius, thickness, length, material), shell_buckling_load(radius, thickness, length, pressure, material))
+
 

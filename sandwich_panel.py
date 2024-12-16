@@ -10,8 +10,8 @@ class sandwich_panel:
         self.density=density 
         self.width=a
         self.length=b
-    def compute_area(self,R):
-        return self.width*self.length-np.pi*(R**2)
+    def compute_area(self,radius):
+        return self.width*self.length-np.pi*(radius**2)
 
         
 
