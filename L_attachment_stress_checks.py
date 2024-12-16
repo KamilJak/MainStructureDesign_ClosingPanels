@@ -3,7 +3,6 @@ import math as m
 import fastener as fst
 
 
-
 def pull_out_check(y_force: float, thickness: float, head_diam: float, allowable_stress: float,bolt_diam: float):
     allowable_stress = float(allowable_stress)
     tau = (y_force/ (m.pi * head_diam * thickness))
@@ -28,7 +27,6 @@ def bearing_check_thermal_included(x_force: float, z_force: float, thickness: fl
     sigma = p / (bolt_diameter*thickness)
     print("The bearing stress at hole is:", sigma)
     print("Safety margin is:", ((allowable_stress/abs(sigma))-1))
-
 
 
 #thermal stress calculations
