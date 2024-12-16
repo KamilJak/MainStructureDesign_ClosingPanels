@@ -1,19 +1,21 @@
 import numpy as np
+from material_data import MaterialProperties
 
 
 
 
-class l_attachment():
+class L_Attachment():
 
-    def __init__(self,n_attachments: float,alpha: float,n_f: int,n_b: int,thickness_b: float, thickness_f: float, hole_diameter: float):
-        self.alpha=alpha
+    def __init__(self,n_attachments: float, n_f: int,n_b: int,thickness_b: float, thickness_f: float, hole_diameter: float, material: MaterialProperties):
         self.n_f=n_f
         self.n_b=n_b
         self.n_attachments=n_attachments
         self.hole_diameter=hole_diameter
         self.thickness_f=thickness_f
         self.thickness_b=thickness_b
-        
+        self.material = material
+
+    '''
     def coordinate_transform(self,x,y,z):
 
         #this function takes as input vectors in their respective directions and transfroms them to a local coordinate system of each attachment
@@ -23,9 +25,12 @@ class l_attachment():
         y_prime=x*np.cos((self.alpha)*np.pi/180)+y*np.cos((self.alpha-90)*np.pi/180)
         z_prime=z
         return(x_prime,y_prime,z_prime)
+    #'''
 
 
-    def mass_attachment(self,attachment_density: float):
+    def mass_attachment(self):
+        width_f, width_b = 0, 0
+        length_f, length_b = 0, 0
         if self.n_f==1:
             width_f=2*1.5*self.hole_diameter
             length_f=2*1.5*self.hole_diameter
@@ -46,7 +51,7 @@ class l_attachment():
             else:
                 length_b=(self.n_b//2)*2.5*self.hole_diameter+2*1.5*self.hole_diameter
 
-        total_mass=(width_f*length_f-(np.pi*0.25*(self.hole_diameter**2))*self.n_f)*self.thickness_f*attachment_density+(width_b*length_b-(np.pi*0.25*(self.hole_diameter**2))*self.n_b)*self.thickness_b*attachment_density
+        total_mass=(width_f*length_f-(np.pi*0.25*(self.hole_diameter**2))*self.n_f)*self.thickness_f*self.material.density+(width_b*length_b-(np.pi*0.25*(self.hole_diameter**2))*self.n_b)*self.thickness_b*self.material.density
         return total_mass
     
 
@@ -60,5 +65,5 @@ class l_attachment():
         b_y=(self.mass_attachment()*a_y+f_y)/self.n_b
         b_z=(self.mass_attachment()*a_z+f_z)/self.n_b
 
-        return f_x,f_y,f_z,b_x,b_y,b_z
+        return np.array(((f_x,f_y,f_z),(b_x,b_y,b_z)))
     

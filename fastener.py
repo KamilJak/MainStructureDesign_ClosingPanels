@@ -8,6 +8,7 @@ class FastenerConfig:
         self.length = length
         self.head_diam = head_d
         self.butt_diam = butt_d
+        self.shaft_diam = bolt_diameter
         self.area = (0.5 * bolt_diameter)**2 * m.pi
 
 

@@ -13,7 +13,7 @@ def pull_out_check(y_force: float, thickness: float, head_diam: float, allowable
             " and Von Mises stress is:", (m.sqrt((3 * tau**2)+sigma**2)))
     print("Safety factor is: ", ((allowable_stress/m.sqrt((3 * tau**2)+sigma**2))-1))
 
-def bearing_check(x_force: float, z_force: float, plate: str, allowable_stress: float,bolt_diameter: float,thickness: float):
+def bearing_check(x_force: float, z_force: float, allowable_stress: float,bolt_diameter: float,thickness: float):
     allowable_stress = float(allowable_stress)
     p = m.sqrt(x_force**2 + z_force**2)
     print(p, "p force")

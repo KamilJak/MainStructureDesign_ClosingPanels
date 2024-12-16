@@ -1,0 +1,7 @@
+variable,value
+n_holes_f,1
+n_holes_b,1
+thickness_f,0.001
+thickness_b,0.001
+hole_diameter,0.004
+material,7075-T6

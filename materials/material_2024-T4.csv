@@ -7,3 +7,4 @@ ultimate_tensile_str,4.69E+08
 axial_curve_number,3
 transverse_curve_number,6
 thermal_coeff,23e-6
+poisson,0.33
