@@ -19,15 +19,15 @@ class l_attachment():
         return(x_prime,y_prime,z_prime)
 
 
-def compute_attachment_forces(n,a_x,a_y,a_z,mass_panel,mass_attachment):
+    def compute_attachment_forces(self,n,a_x,a_y,a_z,mass_panel,mass_attachment):
 
-    f_x=mass_panel*a_x/n
-    f_y=mass_panel*a_y/n
-    f_z=mass_panel*a_z/n
+        f_x=mass_panel*a_x/n
+        f_y=mass_panel*a_y/n
+        f_z=mass_panel*a_z/n
 
-    b_x=mass_attachment*a_x+f_x
-    b_y=mass_attachment*a_y+f_y
-    b_z=mass_attachment*a_z+f_z
+        b_x=mass_attachment*a_x+f_x
+        b_y=mass_attachment*a_y+f_y
+        b_z=mass_attachment*a_z+f_z
 
-    return f_x,f_y,f_z,b_x,b_y,b_z
+        return f_x,f_y,f_z,b_x,b_y,b_z
 

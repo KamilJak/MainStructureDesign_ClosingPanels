@@ -1,5 +1,6 @@
 
 import math as m
+import fastener as fst
 
 
 
@@ -27,3 +28,16 @@ def bearing_check_thermal_included(x_force: float, z_force: float, thickness: fl
     sigma = p / (bolt_diameter*thickness)
     print("The bearing stress at hole is:", sigma)
     print("Safety margin is:", ((allowable_stress/abs(sigma))-1))
+
+
+
+#thermal stress calculations
+def evaluate_thermal(base_thickness_sc,base_thickness_attachment,bolt_diameter, lug_material: MaterialProperties, sc_material: MaterialProperties, fst_material: MaterialProperties, fastener: FastenerConfig, delta_T_max):
+    phi_backplate = fst.force_ratio_head(base_thickness_attachment,bolt_diameter, lug_material, fst_material, fastener)
+    phi_vehicle = fst.force_ratio_butt(base_thickness_sc ,bolt_diameter, sc_material, fst_material, fastener)
+
+    load_lug_maxT = (lug_material.thermal_coeff - fst_material.thermal_coeff) * delta_T_max * fst_material.elasticity_modulus * fastener.area * (1 - phi_backplate)
+    load_sc_maxT = (sc_material.thermal_coeff - fst_material.thermal_coeff) * delta_T_max * fst_material.elasticity_modulus * fastener.area * (1 - phi_vehicle)
+
+    return load_lug_maxT, load_sc_maxT
+
