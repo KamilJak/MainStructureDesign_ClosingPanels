@@ -1,6 +1,14 @@
 import math as m
 
-from data_ingress import FastenerConfig, LugConfig, MaterialProperties
+from material_data import MaterialProperties
+
+
+class FastenerConfig:
+    def __init__(self, bolt_diameter, length, head_d, butt_d) -> None:
+        self.length = length
+        self.head_diam = head_d
+        self.butt_diam = butt_d
+        self.area = (0.5 * bolt_diameter)**2 * m.pi
 
 
 def sum_L_over_A(D_shaft, A_shaft, A_head, A_nut):
