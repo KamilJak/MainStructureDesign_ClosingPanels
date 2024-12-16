@@ -3,6 +3,16 @@ class Component:
     def __init__(self, mass: float, number: int) -> None:
         self.mass = float(mass)
         self.n = int(number)
+        self.instances = 0
+
+    def get(self, number: int) -> float:
+        if self.instances == self.n:
+            raise ValueError("All instances already used")
+        elif self.instances + number > self.n:
+            raise ValueError("Number is greater than instances remaining")
+        else:
+            self.instances += number
+            return self.mass * number
 
 components: dict[str, Component] = {
     'sun sensor': Component(0.375, 4),
@@ -27,4 +37,7 @@ components: dict[str, Component] = {
     'PCDS': Component(4.14, 1),
     'cables': Component(0.9, 1),
 }
+
+def gc(name, number=1):
+    return [components.get(name), number]
 
