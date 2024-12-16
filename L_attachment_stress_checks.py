@@ -30,7 +30,6 @@ def bearing_check_thermal_included(x_force: float, z_force: float, thickness: fl
     print("Safety margin is:", ((allowable_stress/abs(sigma))-1))
 
 
-
 #thermal stress calculations
 def evaluate_thermal(base_thickness_sc,base_thickness_attachment,bolt_diameter, lug_material: MaterialProperties, sc_material: MaterialProperties, fst_material: MaterialProperties, fastener: FastenerConfig, delta_T_max):
     phi_backplate = force_ratio_head(base_thickness_attachment,bolt_diameter, lug_material, fst_material, fastener)
