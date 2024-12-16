@@ -1,4 +1,5 @@
 import math as m
+import numpy as np
 
 class LoadCase:
     def __init__(self, f_x: float, m_x: float, f_y: float, m_y: float, f_z: float, m_z: float) -> None:
@@ -79,5 +80,12 @@ def loadcase_calc(angle: float, time: float, panel_mass: float) -> LoadCase:
     m_y = max(m_y, m_y_m)
 
     return LoadCase(f_x, m_x, f_y, m_y, f_z, m_z)
+
+def tank_loadcase(tank_mass: float) -> np.ndarray:
+    fx = 3*1.25*1.5 * tank_mass
+    fy = 3*1.25*1.5 * tank_mass
+    fz = 8.5*1.25*1.5 * tank_mass
+    return np.array([fx, fy, fz])
+
 
 
