@@ -14,6 +14,7 @@ class L_Attachment():
         self.thickness_f=thickness_f
         self.thickness_b=thickness_b
         self.material = material
+        self.mass = self.mass_attachment()
 
     '''
     def coordinate_transform(self,x,y,z):
@@ -61,9 +62,9 @@ class L_Attachment():
         f_y=mass_panel*a_y/(self.n_attachments*self.n_f)
         f_z=mass_panel*a_z/(self.n_attachments*self.n_f)
 
-        b_x=(self.mass_attachment()*a_x+f_x)/self.n_b
-        b_y=(self.mass_attachment()*a_y+f_y)/self.n_b
-        b_z=(self.mass_attachment()*a_z+f_z)/self.n_b
+        b_x=(self.mass*a_x+f_x)/self.n_b
+        b_y=(self.mass*a_y+f_y)/self.n_b
+        b_z=(self.mass*a_z+f_z)/self.n_b
 
         return np.array(((f_x,f_y,f_z),(b_x,b_y,b_z)))
     

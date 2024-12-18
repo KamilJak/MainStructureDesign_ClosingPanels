@@ -9,6 +9,7 @@ class AttachmentConfig:
         '''
         creates a AttachmentConfig from either a file, taking name as string (name of the config),
         '''
+        self.name = name
         self.n_holes_f, self.n_holes_b, self.thickness_f, self.thickness_b, self.bolt_diam, self.material = self.from_csv(name)
 
     def from_csv(self, name: str = "unnamed") -> list:
@@ -26,8 +27,8 @@ class AttachmentConfig:
                     print("material:", attachmentconfig[i])
         return attachmentconfig
 
-    def to_csv(self, name: str = "unnamed") -> None:
-        filename = "config_" + name + ".csv"
+    def to_csv(self) -> None:
+        filename = "config_" + self.name + ".csv"
         writepath = "attachmentconfig/" + filename
         writepath = Path(writepath)
         config_dict: dict = vars(self)

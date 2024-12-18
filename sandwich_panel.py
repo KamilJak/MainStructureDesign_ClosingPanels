@@ -26,7 +26,6 @@ class Sandwich_Panel:
     def component_mass(self) -> float:
         mass = 0
         for cmp in self.components:
-            print(vars(cmp[0]))
             mass += cmp[0].get(cmp[1])
         return mass
 
@@ -37,13 +36,13 @@ class Sandwich_Panel:
 
 
 def sandwich_panel_get():
-    panel_1_cmp: list[list] = [gc('HRSC camera'), gc('HRSC electronics'), gc('UV spectrometer'), gc('UV electronics')]
-    #panel_2_cmp: list[list] = []
+    panel_1_cmp: list[list] = [gc('HRSC camera'), gc('HRSC electronics'), gc('UV spectrometer'), gc('UV electronics'), gc('gyroscope', 2), gc('reaction wheel', 2)]
+    panel_2_cmp: list[list] = [gc('sun sensor', 2)]
 
     panel_1 = Sandwich_Panel(panel_1_cmp, 1, 1, 0.4)
-    #panel_2 = Sandwich_Panel(panel_2_cmp, 1, 1, 0.4)
+    panel_2 = Sandwich_Panel(panel_2_cmp, 1, 1, 0.4)
 
-    return panel_1, #panel_2
+    return panel_1, panel_2
 
 
 
