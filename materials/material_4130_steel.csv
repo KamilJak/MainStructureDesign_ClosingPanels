@@ -8,3 +8,4 @@ axial number,1
 transverse number,1
 thermal_coeff,12.2e-6
 poisson,0.29
+shear_str,340e6

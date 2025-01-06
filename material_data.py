@@ -6,11 +6,11 @@ from pathlib import Path
 
 
 class MaterialProperties:
-    def __init__(self, density, elasticity_modulus: float = 0, yield_stress: float = 0, metal: bool = True, ultimate_stress: float = 0, curve_n: float = 0, transverse_n: float = 0, thermal_coeff: float = 0, poisson_ratio: float = 0) -> None:
+    def __init__(self, density, elasticity_modulus: float = 0, yield_stress: float = 0, metal: bool = True, ultimate_stress: float = 0, curve_n: float = 0, transverse_n: float = 0, thermal_coeff: float = 0, poisson_ratio: float = 0, shear: float = 0) -> None:
         if isinstance(density, str):
             (density, elasticity_modulus, yield_stress, metal,
-             ultimate_stress, curve_n, transverse_n, thermal_coeff, poisson_ratio) = self.from_csv(density)
-        self.density: float = density
+             ultimate_stress, curve_n, transverse_n, thermal_coeff, poisson_ratio, shear) = self.from_csv(density)
+        self.density: float = float(density)
         self.elasticity_modulus: float = elasticity_modulus
         self.yield_stress: float = yield_stress
         self.ismetal: bool = metal
@@ -19,12 +19,13 @@ class MaterialProperties:
         self.transverse_curve_number: int = int(transverse_n)
         self.thermal_coeff: float = thermal_coeff
         self.poisson_ratio: float = poisson_ratio
+        self.shearstrength: float = shear
 
     def from_csv(self, name: str = "unnamed"):
         materialpath = Path("materials/material_" + name + ".csv")
         material = pd.read_csv(materialpath).to_numpy()
         material = [material[0, 1], material[1, 1], material[2, 1],
-                    material[3, 1], material[4, 1], material[5, 1], material[6, 1], material[7, 1], material[8, 1]]
+                    material[3, 1], material[4, 1], material[5, 1], material[6, 1], material[7, 1], material[8, 1], material[9, 1]]
         for i in range(len(material)):
             if str(material[i]).upper() == "TRUE":
                 material[i] = True

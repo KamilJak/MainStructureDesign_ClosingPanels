@@ -1,5 +1,6 @@
 import math as m
 
+from L_attachments import L_Attachment
 from material_data import MaterialProperties
 
 
@@ -59,3 +60,12 @@ def force_ratio_butt(base_thickness,bolt_diameter, material: MaterialProperties,
 
 def fastener_area(D_fi):
     return m.pi*0.25*(D_fi**2)
+
+def shear_check(f_x, f_y, b_x, b_z, attachment: L_Attachment, fstmaterial: MaterialProperties) -> bool:
+    area = fastener_area(attachment.hole_diameter)
+    f = m.sqrt(f_x**2 + f_y**2)
+    b = m.sqrt(b_x**2 + b_z**2)
+    f_max = max(f, b)
+    tau_max = f_max/area
+    return tau_max * 1.5 <= fstmaterial.shearstrength
+

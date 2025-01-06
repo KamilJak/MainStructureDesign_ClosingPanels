@@ -6,12 +6,14 @@ fabric_thickness=0
 
 
 class Sandwich_Panel:
-    def __init__(self,components: list[list],a: float,b: float, radius: float):
+    def __init__(self,components: list[list]):
+        inner_radius = 0.5
+        a = b = 2*(inner_radius+0.4)
         self.components = components
         self.density=self.panel_density()
         self.width=a
         self.length=b
-        self.area = a * b - np.pi * radius**2
+        self.area = a * b - np.pi * inner_radius**2
 
         self.panel_mass = self.density * self.area
 
@@ -36,13 +38,15 @@ class Sandwich_Panel:
 
 
 def sandwich_panel_get():
-    panel_1_cmp: list[list] = [gc('HRSC camera'), gc('HRSC electronics'), gc('UV spectrometer'), gc('UV electronics'), gc('gyroscope', 2), gc('reaction wheel', 2)]
-    panel_2_cmp: list[list] = [gc('sun sensor', 2)]
+    panel_upper_closing: list[list] = [gc('quarter solar panel'), gc('quarter radiator'), gc('quarter louver'), gc('rcs thruster', 4)]
+    panel_upper_inner: list[list] = [gc('quarter solar panel'), gc('quarter radiator'), gc('quarter louver'), gc('HRSC camera'), gc('UV spectrometer'), gc('a-BELA'), gc('gyroscope', 2), gc('rcs thruster', 4)]
+    panel_lower: list[list] = [gc('quarter solar panel'), gc('quarter radiator'), gc('quarter louver'), gc('HRSC electronics'), gc('UV electronics'), gc('reaction wheel', 4), gc('magnetometer electronics'), gc('battery'), gc('PCDS'), gc('cables'), gc('rcs thruster', 4)]
 
-    panel_1 = Sandwich_Panel(panel_1_cmp, 1, 1, 0.4)
-    panel_2 = Sandwich_Panel(panel_2_cmp, 1, 1, 0.4)
+    panel_1 = Sandwich_Panel(panel_upper_closing)
+    panel_2 = Sandwich_Panel(panel_upper_inner)
+    panel_3 = Sandwich_Panel(panel_lower)
 
-    return panel_1, panel_2
+    return panel_1, panel_2, panel_3
 
 
 

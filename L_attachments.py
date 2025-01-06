@@ -52,7 +52,9 @@ class L_Attachment():
             else:
                 length_b=(self.n_b//2)*2.5*self.hole_diameter+2*1.5*self.hole_diameter
 
-        total_mass=(width_f*length_f-(np.pi*0.25*(self.hole_diameter**2))*self.n_f)*self.thickness_f*self.material.density+(width_b*length_b-(np.pi*0.25*(self.hole_diameter**2))*self.n_b)*self.thickness_b*self.material.density
+        volume_f = (width_f*length_f - self.n_f*np.pi*(self.hole_diameter/2)**2)*self.thickness_f
+        volume_b = (width_b*length_b - self.n_b*np.pi*(self.hole_diameter/2)**2)*self.thickness_b
+        total_mass = (volume_b + volume_f) * self.material.density
         return total_mass
     
 

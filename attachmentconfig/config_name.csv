@@ -5,3 +5,5 @@ thickness_f,0.001
 thickness_b,0.001
 hole_diameter,0.004
 material,7075-T6
+number,1
+mass,5

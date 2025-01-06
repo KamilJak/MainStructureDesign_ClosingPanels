@@ -8,3 +8,4 @@ axial_curve_number,2
 transverse_curve_number,11
 thermal_coeff,24.4e-6
 poisson,0.33
+shear,260e6
