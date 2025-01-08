@@ -1,3 +1,4 @@
+#!/usr/bin/python3
 from material_data import MaterialProperties
 import math as m
 
@@ -47,18 +48,19 @@ def get_mass(radius, thickness, length, material: MaterialProperties) -> float:
 volume = 1.207
 other_structures = 4*3
 other_mass = (56.5+33.2+57.2+3.66+other_structures+17.56)
-length = max(0.715 + 0.282 + 4*(0.015+0.00019805*4), 2)
+length = 1.44 # max(0.715 + 0.282 + 4*(0.015+0.00019805*4), 2)
 print(length)
 material = MaterialProperties('7075-T6')
-pressure = 1950000
+pmin = 500000
+pmax = 1950000
 min_mass = m.inf
 r = m.sqrt((volume/length)/m.pi)
 for t in map(lambda x: x/10000, range(5, 20)):
     mass = get_mass(r, t, length, material)
     total_mass = mass + other_mass
-    maxload = maximum_load(r, t, length, pressure, material)
+    maxload = maximum_load(r, t, length, pmin, material)
     load = 8.5*1.5*1.25*9.81*total_mass 
-    hoopstress = pressure*r/(2*t)
+    hoopstress = pmax*r/(2*t)
     if total_mass <= min_mass and load*1.5 <= maxload and hoopstress*1.5 <= material.yield_stress:
         min_mass = total_mass
         print(r, t, total_mass, mass)

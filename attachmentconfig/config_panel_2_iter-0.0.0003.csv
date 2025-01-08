@@ -3,8 +3,8 @@ name,panel_2_iter-0.0.0003
 n_holes_f,2
 n_holes_b,2
 thickness_f,0.0007
-thickness_b,0.0013
+thickness_b,0.0014
 bolt_diam,0.002
 material,7075-T6
 number,6
-mass,0.027393332347208962
+mass,0.02749401489678106

@@ -45,8 +45,8 @@ if __name__ == "__main__":
                                 calcnumber+=1
     
                                 if succeeds and mass < best_mass:
-                                    v = (n_length-len(str(iteration)))*"0" + str(iteration)
-                                    attachment_cfg.name = "panel_" + str(panel_idx) + "_iter-0.0." + v
+                                    version_number = (n_length-len(str(iteration)))*"0" + str(iteration)
+                                    attachment_cfg.name = "panel_" + str(panel_idx) + "_iter-0.0." + version_number
                                     attachment_cfg.to_csv()
                                     print(calcnumber, iteration, mass, "kg")
                                     iteration += 1
