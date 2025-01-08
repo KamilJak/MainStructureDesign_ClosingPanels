@@ -22,7 +22,7 @@ if __name__ == "__main__":
         print("\n\npanel", panel_idx)
         print("\npanel mass:", panel.panel_mass)
         print("total panel mass:", panel.total_mass)
-        panel_mass = panel.total_mass
+        panel_mass = panel.total_mass/4
         iteration = 0
         attachment_cfg = AttachmentConfig("name")
         best_mass = 1000000000000000000000000000000000000

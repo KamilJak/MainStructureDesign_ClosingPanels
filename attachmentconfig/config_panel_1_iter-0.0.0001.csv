@@ -1,10 +1,10 @@
 ,Values (all in base SI units)
 name,panel_1_iter-0.0.0001
 n_holes_f,1
-n_holes_b,2
+n_holes_b,1
 thickness_f,0.0004
-thickness_b,0.0008
+thickness_b,0.0004
 bolt_diam,0.001
 material,7075-T6
-number,6
-mass,0.011286374016763313
+number,5
+mass,0.006405436271649738

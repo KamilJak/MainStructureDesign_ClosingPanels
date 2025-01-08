@@ -4,7 +4,7 @@ n_holes_f,1
 n_holes_b,1
 thickness_f,0.0004
 thickness_b,0.0004
-bolt_diam,0.003
+bolt_diam,0.001
 material,7075-T6
 number,6
-mass,0.02123675120297548
+mass,0.007686523525979684
